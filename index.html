@@ -59,22 +59,13 @@
                     <div class="col-12 form-check form-check-inline py-3" id="options-template" required="true"> 
                       <!-- Check function 'generateProductDetails'-->
                     </div>
-                    
+                    <strong><p class="card-text text-success p-3" id="price">€</p></strong>
                     <div class="col-12 input-group mb-3 py-3">
-                      <select class="custom-select" id="type-options">
-                        <option selected value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                      </select>
-                      <div class="input-group-append">
-                        <label class="input-group-text bg-dark text-warning" for="type-options"># de produits</label>
-                      </div>
+                      <input class="form-control" type="number" value="1" min="1" max="10"/>
+                      <button class="btn btn-warning" type="button" id="button-add">Ajouter au panier</button>
                     </div>
                   </div>
-                  <strong><p class="card-text text-success p-3" id="price">€</p></strong>
-                  <button type="submit" href="#" class="col-6 btn btn-warning py-3">Acheter</button>
+
                 </div>
               </div>
             </div>
@@ -116,8 +107,6 @@
         $template.querySelector("#product-img").alt = product.name
         $template.querySelector(".card-title").textContent = product.name
         $template.querySelector("#description").textContent = product.description
-        $template.querySelector("select").id = product.name
-        $template.querySelector("label.input-group-text").htmlFor = product.name
         $template.querySelector("#price").textContent = `${product.price / 1000} € / article`
         
         return $template
