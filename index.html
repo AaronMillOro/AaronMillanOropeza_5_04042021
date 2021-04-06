@@ -52,6 +52,7 @@
               <div class="card-body">
                 <h2 class="card-title">Product name</h2>
                 <p class="card-text" id="description">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <strong><p class="card-text text-success p-3" id="price">€</p></strong>
               
                 <div class="container">
                   <div class="row">
@@ -59,11 +60,10 @@
                     <div class="col-12 form-check form-check-inline py-3" id="options-template" required="true"> 
                       <!-- Check function 'generateProductDetails'-->
                     </div>
-                    <strong><p class="card-text text-success p-3" id="price">€</p></strong>
                     <div class="col-12 input-group mb-3 py-3">
                       <input class="form-control" type="number" value="1" min="1" max="10"/>
-                      <button class="btn btn-warning" type="button" id="button-add">Ajouter au panier</button>
                     </div>
+                    <button class="btn btn-warning" type="button" id="button-add">Ajouter au panier</button>
                   </div>
 
                 </div>
@@ -88,6 +88,19 @@
 
     <!-- Logic to display products infomation-->
     <script type="text/javascript">
+
+      const validateSelection = $button =>{
+        // Retrieves the selected option per article and returns the given option and the quantity of articles
+        const $parent = $button.parentElement
+        const $quantity = $parent.querySelector("input[type='number']").value
+        const $option = $parent.querySelector("input[type='radio']:checked")
+        if ($option !== null) {
+          const selection = [$option.value, $quantity]
+          return selection 
+        } else {
+          alert("Choissisez le type de lentilles")
+        }
+      }
       
       const generateProductDetails = product => {
         // Generates the template information of each product to be filled on HTML code
@@ -97,7 +110,7 @@
         let $options_block = []
         product.lenses.forEach(option => {
           let $option = `<div class="form-check">
-                           <input class="form-check-input" type="radio" name="gridRadios" id="${option}-${product.name}" value="${option}-${product.name}" checked>
+                           <input class="form-check-input" type="radio" name="gridRadios" id="${option}-${product.name}" value="${option}" checked>
                            <label class="form-check-label" for="${option}-${product.name}">${option}</label>
                          </div>`
           $options_block += $option
@@ -108,6 +121,11 @@
         $template.querySelector(".card-title").textContent = product.name
         $template.querySelector("#description").textContent = product.description
         $template.querySelector("#price").textContent = `${product.price / 1000} € / article`
+        
+        $template.querySelector("#button-add").addEventListener("click", event => {
+          console.log(product.name)
+          console.log(validateSelection(event.target))
+        })
         
         return $template
       }
