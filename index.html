@@ -106,9 +106,23 @@
         let all_products = loadCart()
         all_products.push(selection)
         saveCart(all_products)
-        console.log(all_products, selection[0].name)
         alert(`La caméra ${selection[0].name} a été ajouté au panier`)
+        document.location.reload()
       }
+
+      const showNumberItems = () => {
+        // displays the number of items added to the the cart
+        const all_products = loadCart()
+        const $indicator = document.querySelector("#basket-items")
+        let $number_items = 0
+        all_products.forEach(product => { $number_items += parseInt(product[2])})
+        if ($number_items) {
+          $indicator.textContent = $number_items 
+        }
+        console.log($number_items)
+      }
+
+      showNumberItems()
 
     </script>
     <script type="text/javascript" src="js/productsManager.js"></script>
