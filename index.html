@@ -88,6 +88,29 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 
     <!-- Logic to display products infomation-->
+    <script type="text/javascript">
+      
+      const saveCart = products => {
+        // stores an array of selected products into the localStore variable "cart" as a string
+        localStorage.setItem("cart", JSON.stringify(products))
+      } 
+
+      const loadCart = () => {
+        // retrieves the variable "cart" as a JS object
+        const cart = JSON.parse(localStorage.getItem("cart")) ? JSON.parse(localStorage.getItem("cart")) : []
+        return cart
+      }
+
+      const addToCart = selection => {
+        // adds a selected product to the variable "cart" in localStore. When "cart" is parsed it is an array of arrays 
+        let all_products = loadCart()
+        all_products.push(selection)
+        saveCart(all_products)
+        console.log(all_products, selection[0].name)
+        alert(`La caméra ${selection[0].name} a été ajouté au panier`)
+      }
+
+    </script>
     <script type="text/javascript" src="js/productsManager.js"></script>
 
   </body>

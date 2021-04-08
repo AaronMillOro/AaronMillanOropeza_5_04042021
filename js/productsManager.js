@@ -5,9 +5,7 @@ const validateSelection = ($button, product) =>{
   const $option = $parent.querySelector("input[type='radio']:checked")
   if ($option !== null) {
     const selection = [product, $option.value, $quantity]
-    console.log(selection)
-    // add to cart
-    return selection 
+    addToCart(selection)
   } else {
     alert("Choissisez le type de lentilles")
   }
