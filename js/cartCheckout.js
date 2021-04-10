@@ -27,6 +27,8 @@ const showBasket = () => {
       $all_items.appendChild($item_details)
     })
 
+    calculateArticles(all_products)
+
   } else {
 
     const $node = document.createElement("h2")
@@ -35,6 +37,18 @@ const showBasket = () => {
     $node.appendChild($msg)
     document.querySelector("#cart-block").replaceWith($node)
 
+  }
+}
+
+const calculateArticles = (all_products) => {
+  let total_items = 0
+  all_products.forEach(product => {
+    total_items += Number(product[2])
+  })
+  if (total_items == 1) {
+    document.querySelector("#total-articles").textContent = `pour ${total_items} article`
+  } else {
+    document.querySelector("#total-articles").textContent = `pour ${total_items} articles`
   }
 }
 
