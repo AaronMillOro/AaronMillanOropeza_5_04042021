@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Orinoco - Cameras</title>
+    <title>Orinoco - Panier</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
   </head>
   <body>
@@ -19,7 +19,7 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item p-4">
-                <a class="btn-lg btn-outline-warning border border-warning rounded-lg" href="checkout.html">
+                <a class="btn-lg btn-outline-warning border border-warning rounded-lg disabled">
                   Mon panier
                   <sup><span class="badge badge-pill badge-danger" id="basket-items">0</span></sup>
                 </a>
@@ -34,44 +34,40 @@
       <!-- Main jumbotron -->
       <div class="jumbotron">
         <div class="container text-center">
-          <h1>Bienvenu chez Orinoco!</h1>
-          <p>Le site leader de <strong>caméras</strong> de haute gamme à des prix imbatables.</p>
-          <p><a class="btn btn-warning btn-lg" href="#products" role="button">Decouvrir nos cameras</a></p>
+          <h1>Votre panier</h1>
+          <p>Voici vos produits sélectionés</p>
         </div>
       </div>
     
-      <div class="container py-4" id="products">
-        <h2 class="py-3">Nos produits</h2>
-
+      <div class="container py-4" id="cart-block">
         <!-- Items -->
-        <div class="row text-center" id="items">
-
-          <template id="product-template">
-            <div class="col-md-5 card border-dark m-4">
-              <img src="..." class="card-img-top py-3" alt="..." id="product-img">
-              <div class="card-body">
-                <h2 class="card-title">Product name</h2>
-                <p class="card-text" id="description">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <strong><p class="card-text text-success p-3" id="price">€</p></strong>
-              
-                <div class="container">
-                  <div class="row">
-                    <p><strong>Lentilles:</strong></p>
-                    <div class="col-12 form-check form-check-inline py-3" id="options-template" required="true"> 
-                      <!-- Check function 'generateProductDetails'-->
-                    </div>
-                    <div class="col-12 input-group mb-3 py-3">
-                      <input id="qtyField" class="form-control" type="number" value="1" min="1" max="10"/>
-                      <label id="qtyLabel" class="form-check-label text-warning bg-dark p-1" for="qtyField">Articles</label>
-                    </div>
-                    <button class="btn btn-warning" type="button" id="button-add">Ajouter au panier</button>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          </template>
-
+        <div class="table-responsive text-wrap">
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Caméra</th>
+                <th scope="col">Modèle</th>
+                <th scope="col">Lentilles</th>
+                <th scope="col">Articles</th>
+                <th scope="col">Prix unitaire</th>
+                <th scope="col">Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <template id="basket-item">
+                <tr>
+                  <th id="addition" scope="row">1</th>
+                  <td><img src="..." alt="..." width="80" height="50" id="img-cam"></td>
+                  <td id="product-name">MarkMarkMarkMarkMark</td>
+                  <td id="selected-option">MarkMarkMarkMarkMark</td>
+                  <td id="number-items">Mark</td>
+                  <td id="prix-article">Mark</td>
+                  <td id="total">Mark</td>
+                </tr>
+              </template>
+            </tbody>
+          </table>
         </div>
       </div>
     </main>
@@ -89,7 +85,7 @@
 
     <!-- Logic to display products infomation-->
     <script type="text/javascript" src="js/cartManager.js"></script>
-    <script type="text/javascript" src="js/productsManager.js"></script>
+    <script type="text/javascript" src="js/cartCheckout.js"></script>
 
   </body>
 </html>
