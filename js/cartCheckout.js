@@ -29,6 +29,10 @@ const showBasket = () => {
 
     calculateArticles(all_products)
     calculateTotal(all_products)
+    document.querySelector("#empty-cart").addEventListener("click", event => {
+      emptyCart()
+      document.location.reload()
+    })
 
   } else {
 
