@@ -28,6 +28,7 @@ const showBasket = () => {
     })
 
     calculateArticles(all_products)
+    calculateTotal(all_products)
 
   } else {
 
@@ -42,14 +43,18 @@ const showBasket = () => {
 
 const calculateArticles = (all_products) => {
   let total_items = 0
-  all_products.forEach(product => {
-    total_items += Number(product[2])
-  })
+  all_products.forEach(product => { total_items += Number(product[2]) })
   if (total_items == 1) {
     document.querySelector("#total-articles").textContent = `pour ${total_items} article`
   } else {
     document.querySelector("#total-articles").textContent = `pour ${total_items} articles`
   }
+}
+
+const calculateTotal = (all_products) => {
+  let total_amount = 0
+  all_products.forEach(product => { total_amount += Number(product[0].price) * Number(product[2]) })
+  document.querySelector("#checkout").textContent = `${Number(total_amount) / 1000} €`
 }
 
 showBasket()
