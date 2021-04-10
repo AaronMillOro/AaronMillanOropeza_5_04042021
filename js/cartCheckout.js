@@ -15,7 +15,7 @@ const showBasket = () => {
       $item_details.querySelector("#selected-option").textContent = product[1]
       $item_details.querySelector("#number-items").textContent = product[2]
       $item_details.querySelector("#prix-article").textContent = `${(Number(product[0].price) / 1000)} €`
-      $item_details.querySelector("#total").textContent = `${(Number(product[0].price) / 1000) * Number(product[2])} €`
+      $item_details.querySelector("#total").textContent = `${Math.trunc((Number(product[0].price) / 1000) * (Number(product[2])) * 100) / 100} €`
       
       $item_details.querySelector("#addition").setAttribute("id", `addition-${index}`)
       $item_details.querySelector("#img-cam").setAttribute("id", `image-${product[0].name}-${index}`)
