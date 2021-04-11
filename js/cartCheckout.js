@@ -1,11 +1,39 @@
+const displayConfirmation = () =>{
+  // Displays the number of order and the amount paid
+  const all_products = loadCart()
+
+  if (all_products.length > 0) {
+    const $order =  localStorage.getItem("order")
+    document.querySelector("#number-order").textContent = $order
+    calculateTotal(all_products)
+    // clean traces 
+    emptyCart()
+    localStorage.removeItem("order")
+  } else {
+    // in case that there are no items on cart
+    const $container = document.querySelector("main > div:last-child")
+    const $title = document.createElement("h1")
+    const $msg = document.createTextNode("Visitez notre boutique")
+    $title.className = "text-center text-danger"
+    $title.appendChild($msg)
+    document.querySelector("h1").replaceWith($title)
+    document.querySelector("main").removeChild($container)
+  }
+}
+
+
 const sendData = async (data) => {
+  // makes a POST of the order and retrieves the corresponding orderId from the server
   return await fetch('http://localhost:3000/api/cameras/order', {
     method: "POST", 
     headers: {"Content-Type": "application/json"},
-    body: JSON.stringify(data),
+    body: JSON.stringify(data)
   })
-  .then(response => response.json())
-  .then(response => {console.log(response.orderId)} )
+    .then(response => response.json())
+    .then(response => {
+      localStorage.setItem("order", response.orderId)
+      document.location.href = "confirmation.html"
+    })
 }
 
 
@@ -73,7 +101,6 @@ const showBasket = () => {
     var $msg = document.createTextNode("Pas de produits sélectionés")
     $node.appendChild($msg)
     document.querySelector("#cart-block").replaceWith($node)
-
   }
 }
 
@@ -108,6 +135,3 @@ const calculateTotal = (all_products) => {
   all_products.forEach(product => { total_amount += Number(product[0].price) * Number(product[2]) })
   document.querySelector("#checkout").textContent = `Total: ${Number(total_amount) / 1000} €`
 }
-
-
-showBasket()

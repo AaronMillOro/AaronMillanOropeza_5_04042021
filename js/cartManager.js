@@ -28,7 +28,7 @@ const addToCart = selection => {
 
 
 const showNumberItems = () => {
-  // displays the number of items added to the the cart
+  // displays the number of items added to the cart in the nav bar
   const all_products = loadCart()
   const $indicator = document.querySelector("#basket-items")
   let $number_items = 0
