@@ -33,18 +33,15 @@ const generateProductDetails = product => {
   $template.querySelector("#price").textContent = `${product.price / 1000} € / article`
   $template.querySelector("#qtyField").setAttribute("id", `${product.name}-qty`)
   $template.querySelector("#qtyLabel").htmlFor = `${product.name}-qty`
-
+  
+  // event trigered by button: i) validation before adding to cart 
   $template.querySelector("#button-add").addEventListener("click", event => {
     validateSelection(event.target, product)
   })
-  // checkpoint to display this button only on the main page
-  const presence_product = document.querySelector("#check-details") !== null
-  if(presence_product) {
-    $template.querySelector("#check-details").addEventListener("click", event => {
-      localStorage.setItem("product_id", product._id)
-    })
-  }
-  
+    // event trigered by button: ii) creates product id on localStorage and moves to product page 
+  $template.querySelector("#check-details").addEventListener("click", event => {
+    localStorage.setItem("product_id", product._id)
+  })
   return $template
 }
 
@@ -58,6 +55,7 @@ const displayElements = elements => {
     $products.appendChild(generateProductDetails(elements))
   }
 }
+
 
 const getOneProduct = async () => {
   // Extracts the data of ONE selected product

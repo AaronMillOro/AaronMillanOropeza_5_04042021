@@ -45,6 +45,7 @@ const showBasket = () => {
   }
 }
 
+
 const calculateArticles = (all_products) => {
   let total_items = 0
   all_products.forEach(product => { total_items += Number(product[2]) })
@@ -55,10 +56,12 @@ const calculateArticles = (all_products) => {
   }
 }
 
+
 const calculateTotal = (all_products) => {
   let total_amount = 0
   all_products.forEach(product => { total_amount += Number(product[0].price) * Number(product[2]) })
   document.querySelector("#checkout").textContent = `${Number(total_amount) / 1000} €`
 }
+
 
 showBasket()
