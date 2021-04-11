@@ -1,3 +1,17 @@
+const validateForm = (ids_list) => {
+  document.querySelector("form").addEventListener("submit", event => {
+    event.preventDefault()
+    const contact = {
+      "firstName": document.querySelector("#user-name").value,
+      "lastName": document.querySelector("#user-lastname").value,
+      "address": document.querySelector("#user-address").value,
+      "city": document.querySelector("#user-city").value,
+      "email": document.querySelector("#user-email").value,
+    }
+    console.log(contact, ids_list)
+  })
+}
+
 const showBasket = () => {
   // displays the details for each product in the cart if they exist
   const all_products = loadCart()
@@ -29,9 +43,13 @@ const showBasket = () => {
 
     calculateArticles(all_products)
     calculateTotal(all_products)
+
     document.querySelector("#empty-cart").addEventListener("click", event => {
       emptyCart()
       document.location.reload()
+    })
+    document.querySelector("#checkout-btn").addEventListener("click", event => {
+      validateForm(generateIdList(all_products))
     })
 
   } else {
@@ -54,6 +72,17 @@ const calculateArticles = (all_products) => {
   } else {
     document.querySelector("#total-articles").textContent = `pour ${total_items} articles`
   }
+}
+
+
+const generateIdList = (all_products) => {
+  let idList = []
+  all_products.forEach(product => { 
+    for (let counter = 1; counter <= product[2]; counter++) {
+      idList.push(product[0]._id) 
+    }
+  })
+  return idList
 }
 
 
