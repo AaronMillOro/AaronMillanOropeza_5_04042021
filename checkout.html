@@ -77,23 +77,23 @@
                 <div class="card-body">
                   <div class="form-inline row py-2">
                     <label for="user-name" class="col-sm-4 col-form-label">Votre prénom</label>
-                    <input type="text" class="form-control" id="user-name" placeholder="Prénom" required>
+                    <input type="text" class="form-control" id="user-name" placeholder="Prénom (lettres sans accents)" pattern="[a-zA-Z]+" required>
                   </div>
                   <div class="form-inline row py-2">
                     <label for="user-lastname" class="col-sm-4 col-form-label">Votre nom</label>
-                    <input type="text" class="form-control" id="user-lastname" placeholder="Nom" required>
+                    <input type="text" class="form-control" id="user-lastname" placeholder="Nom (lettres sans accents)" pattern="[a-zA-Z]+" required>
                   </div>
                   <div class="form-inline row py-2">
                     <label for="user-address" class="col-sm-4 col-form-label">Addresse</label>
-                    <input type="text" class="form-control" id="user-address" placeholder="Addresse" required>
+                    <input type="text" class="form-control" id="user-address" placeholder="Addresse" pattern="[0-9a-zA-Z\W+]+" required>
                   </div>
                   <div class="form-inline row py-2">
                     <label for="user-city" class="col-sm-4 col-form-label">Ville</label>
-                    <input type="text" class="form-control" id="user-city" placeholder="Ville" required>
+                    <input type="text" class="form-control" id="user-city" placeholder="Ville (sans accents)" pattern="[a-zA-Z]+" required>
                   </div>
                   <div class="form-inline row py-2">
                     <label for="user-email" class="col-sm-4 col-form-label">E-mail</label>
-                    <input type="email" class="form-control" id="user-email" placeholder="nom.prenom@mail.com" required>
+                    <input type="email" class="form-control" id="user-email" placeholder="nom.prenom@mail.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}" required>
                   </div>
 
                   <!-- Summary of cart-->
