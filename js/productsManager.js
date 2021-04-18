@@ -7,7 +7,7 @@ const validateSelection = ($button, product) =>{
     const selection = [product, $option.value, $quantity]
     addToCart(selection)
   } else {
-    alert("Choissisez le type de lentilles")
+    showToast("Choissisez le type de lentilles")
   }
 }
 

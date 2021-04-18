@@ -1,3 +1,10 @@
+const showToast = (message) => {
+  const msg = document.querySelector(".toast-body")
+  msg.textContent = message
+  $(".toast").toast("show")
+}
+
+
 const saveCart = products => {
   // stores an array of selected products into the localStorage key "cart" as a string
   localStorage.setItem("cart", JSON.stringify(products))
@@ -22,8 +29,8 @@ const addToCart = selection => {
   let all_products = loadCart()
   all_products.push(selection)
   saveCart(all_products)
-  alert(`La caméra ${selection[0].name} a été ajouté au panier`)
-  document.location.reload()
+  showToast(`La caméra ${selection[0].name} a été ajouté au panier`)
+  setTimeout(function(){ document.location.reload() }, 3000)
 }
 
 
